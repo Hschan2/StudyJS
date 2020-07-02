@@ -1,3 +1,4 @@
+"use strict";
 // Union Types
 function combine(n1, n2, resultConversion) {
     var result; // let은 지역 변수

@@ -1,3 +1,4 @@
+"use strict";
 function add(a, b, c, d) {
     var isResult = a + b;
     if (c)

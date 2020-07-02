@@ -1,3 +1,4 @@
+"use strict";
 // Function return Type and Void
 function add(n1, n2) {
     return n1 + n2;
@@ -13,7 +14,7 @@ function printResult2(num: number): undefined { // undefined => return이 있는
 */
 function addAndHandle(n1, n2, cb) {
     var result = n1 + n2;
-    cb(result);
+    cb(result); // cb는 숫자 타입의 값을 반환
 }
 printResult(add(5, 2)); // Result is 7
 console.log(printResult(add(5, 2))); // Result is 7, undefined

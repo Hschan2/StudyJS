@@ -1,3 +1,4 @@
+"use strict";
 // const ADMIN = 0;
 // const READ_ONLY = 1;
 // const AUTHOR = 2;
@@ -14,7 +15,7 @@ var person = {
     hobbies: ['Movie', 'Picture', 1],
     roles: [2, 'author'],
     // check: 'READ',
-    check: Role.ADMIN
+    check: Role.ADMIN,
 };
 person.roles.push('admin'); // person의 role에 새로운 값을 넣는다
 person.roles[1] = 10; // roles의 1 인덱스의 값을 10으로
@@ -34,4 +35,5 @@ if (person.check === Role.ADMIN)
 Array - [1,2,3]
 Tuple - [1,2] // added by TypeScript: Fixed-length array
 Enum - enum {NEW, OLD}
+any - all (*)
 */ 
