@@ -5,6 +5,6 @@
   
 ### TypeScript가 뭐지?
 
-#####- tspart1<br>
+##### - tspart1<br>
   type부터 알아보기
   
