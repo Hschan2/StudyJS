@@ -26,4 +26,15 @@
 ##### - tspart8
   Watch -> tsc -w => 자동적으로 새로고침, include and exclude files => 모듈을 이용해, Libs => bind
   
+##### - Process&Thread
+  자바스크립트에서 쓰레드란?
+
+##### - RecursiveFunction
+  자바스크립트에서 재귀함수란?
+
+##### - eventDelegation
+  자바스크립트에서 이벤트 위임이란?
+
+##### - eventLoof
+  자바스크립트에서 이벤트 루프란?
   
