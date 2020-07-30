@@ -39,6 +39,5 @@
   자바스크립트에서 이벤트 루프란?
   
 ##### - JSON
-  JSON에 대해 알아보자
-  
+  JSON에서 stringify와 parse에 대해 알아보자
   
