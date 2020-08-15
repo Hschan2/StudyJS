@@ -41,3 +41,8 @@
 ##### - JSON
   JSON에서 stringify와 parse에 대해 알아보자
   
+##### - TextToVoice
+  음성 선택, 입력받은 값 음성으로 출력
+  
+##### - TextToVoice2
+  음성 선택X. 익스플로어, 크롬, 엣지, 네이버 웨일마다 음성을 다르게 출력
