@@ -4,10 +4,16 @@ const e = React.createElement;
 class LikeButton extends React.Component {
     constructor(props) {
         super(props);
+        this.state = { // 바뀔 여지가 있는 부분 (state -> 데이터라고 생각하면 쉽다. React가 알아서 화면을 일치 시켜준다)
+            liked: false,
+        };
     }
 
     render() {
-        return e('button', null, 'Like'); // <button>Like</button>를 만들겠다는 의미. 만든다 X
+        return e('button', { onClick: () => {this.setState({liked:true})}, type: 'submit' }, this.state.liked === true ? 'Liked' : 'Like',);
+        // <button onClick="() => {this.setState({liked:true})} type="submit"">Like</button>를 만들겠다는 의미. 만든다 X
+        // setState => 값을 변경할 때 (상태를 설정하다)
+        // $('button').text('Liked');
     }
 }
 
