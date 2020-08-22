@@ -15,7 +15,7 @@ class GuGuDan extends React.Component {
     // 클래스 메서드로 사용하면 더 보기 좋게 쓸 수 있다
     onSubmit = (e) => {
         e.preventDefault();
-        if(parseInt(value) === this.state.first * this.state.second) {
+        if(parseInt(this.state.value) === this.state.first * this.state.second) {
             this.setState({
                 result: this.state.first + ' * ' + this.state.second + ' = ' + this.state.first * this.state.second + ', 정답이다!', // result 변경될 값
                 first: Math.ceil(Math.random() * 9), // first 변경될 값
@@ -37,12 +37,12 @@ class GuGuDan extends React.Component {
     render() {
         return (
             <div>
-                {this.state.first} 곱하기 {this.state.second}의 값은? {/* 구구단 문제 숫자 */}
+                <div>{this.state.first} 곱하기 {this.state.second}의 값은?</div> {/* 구구단 문제 숫자 */}
                 <form onSubmit={this.onSubmit}>
                     <input type="number" value={this.state.value} onChange={this.onChange} /> {/* 입력 칸 */}
                     <button>입력</button>
                 </form>
-                <div>{this.state.resultVale} {this.state.result}</div>  {/* 결과 값 */}
+                <div>{this.state.result}</div>  {/* 결과 값 */}
             </div>
         );
     }
