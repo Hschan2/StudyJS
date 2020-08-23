@@ -36,7 +36,7 @@ class GuGuDan extends React.Component {
 
     render() {
         return (
-            <div>
+            <div class="main">
                 <div>{this.state.first} 곱하기 {this.state.second}의 값은?</div> {/* 구구단 문제 숫자 */}
                 <form onSubmit={this.onSubmit}>
                     <input type="number" value={this.state.value} onChange={this.onChange} /> {/* 입력 칸 */}
