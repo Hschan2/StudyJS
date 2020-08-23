@@ -40,7 +40,7 @@ class GuGuDan extends React.Component {
                 <div>{this.state.first} 곱하기 {this.state.second}의 값은?</div> {/* 구구단 문제 숫자 */}
                 <form onSubmit={this.onSubmit}>
                     <input type="number" value={this.state.value} onChange={this.onChange} /> {/* 입력 칸 */}
-                    <button>입력</button>
+                    <button class="btn">입력</button>
                 </form>
                 <div>{this.state.result}</div>  {/* 결과 값 */}
             </div>
