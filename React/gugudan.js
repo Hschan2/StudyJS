@@ -25,19 +25,34 @@ class GuGuDan extends React.Component {
     onSubmit = (e) => {
         e.preventDefault();
         if(parseInt(this.state.value) === this.state.first * this.state.second) {
-            this.setState({
-                result: this.state.first + ' * ' + this.state.second + ' = ' + this.state.first * this.state.second + ', 정답이다!', // result 변경될 값
-                first: Math.ceil(Math.random() * 9), // first 변경될 값
-                second: Math.ceil(Math.random() * 9), // second 변경될 값
-                value: '', // value 변경될 값
+            this.setState((prevState) => { // 함수형으로 처리하기. setState는 비동기이기 때문에 함수형으로 하면 에러 발생이 줄어듬. 예전 값으로 새로운 값을 만들때는 함수형으로 return해주는 방법으로. this.state... 으로 쓸 때는 함수형으로
+                return {
+                    result: prevState.first + ' * ' + prevState.second + ' = ' + prevState.first * prevState.second + ', 정답이다!', // result 변경될 값
+                    first: Math.ceil(Math.random() * 9), // first 변경될 값
+                    second: Math.ceil(Math.random() * 9), // second 변경될 값
+                    value: '', // value 변경될 값
+                }
             });
         } else {
-            this.setState({
-                result: this.state.value + ', 틀렸다!', // result 변경될 값
-                value: '', // value 변경될 값
+            this.setState((prevState) => {
+                return {
+                    result: prevState.value + ', 틀렸다!', // result 변경될 값
+                    value: '', // value 변경될 값
+                }
             });
         }
     };
+    // 이전 방법
+    // this.setState({
+    //     result: prevState.first + ' * ' + prevState.second + ' = ' + prevState.first * prevState.second + ', 정답이다!', // result 변경될 값
+    //     first: Math.ceil(Math.random() * 9), // first 변경될 값
+    //     second: Math.ceil(Math.random() * 9), // second 변경될 값
+    //     value: '', // value 변경될 값
+    // });
+    // this.setState({
+    //     result: prevState.value + ', 틀렸다!', // result 변경될 값
+    //                 value: '', // value 변경될 값
+    // });
 
     onChange = (e) => {
         this.setState({value : e.target.value});
