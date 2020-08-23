@@ -11,8 +11,17 @@ class GuGuDan extends React.Component {
             result: '',
         }
     }
+    // 위에 대신에 아래처럼 써도 된다. constructor(props), super(props); 없애고 사용하는 방법
+    // 실무에서 더 많이 쓰는 방법
+    //     state = {
+    //         first: Math.ceil(Math.random() * 9), // 첫 번째 숫자 랜덤(1~9)
+    //         second: Math.ceil(Math.random() * 9), // 두 번째 숫자 랜덤(1~9)
+    //         value: '',
+    //         result: '',
+    //     }
 
     // 클래스 메서드로 사용하면 더 보기 좋게 쓸 수 있다
+    // 아래처럼 직접 만들어서 쓰는 함수는 무조건 화살표로. (e) => {} 이렇게 쓴다
     onSubmit = (e) => {
         e.preventDefault();
         if(parseInt(this.state.value) === this.state.first * this.state.second) {
@@ -35,15 +44,15 @@ class GuGuDan extends React.Component {
     };
 
     render() {
-        return (
-            <div class="main">
+        return ( // 그룹 연산자 ()를 쓰는 이유는 아래 코드가 더 깔끔하게 보이기 위해
+            <React.Fragment> {/* root의 div안에 쓸데 없는 div 없애기 위해*/}
                 <div>{this.state.first} 곱하기 {this.state.second}의 값은?</div> {/* 구구단 문제 숫자 */}
                 <form onSubmit={this.onSubmit}>
                     <input type="number" value={this.state.value} onChange={this.onChange} /> {/* 입력 칸 */}
-                    <button class="btn">입력</button>
+                    <button type="submit" class="btn">입력</button>
                 </form>
                 <div>{this.state.result}</div>  {/* 결과 값 */}
-            </div>
+            </React.Fragment>
         );
     }
 }
