@@ -33,6 +33,7 @@ class GuGuDan extends React.Component {
                     value: '', // value 변경될 값
                 }
             });
+            this.inputFocus.focus(); // setState 이후 input에 focus
         } else {
             this.setState((prevState) => {
                 return {
@@ -40,6 +41,7 @@ class GuGuDan extends React.Component {
                     value: '', // value 변경될 값
                 }
             });
+            this.inputFocus.focus(); // setState 이후 input에 focus
         }
     };
     // 이전 방법
@@ -58,13 +60,19 @@ class GuGuDan extends React.Component {
         this.setState({value : e.target.value});
     };
 
+    inputFocus = (e) => {
+        this.inputFocus = e;
+    }; // input 칸 focus 선언
+
+    // setState 할 때마다 render() 실행 => 성능 최적화 필요
     render() {
         return ( // 그룹 연산자 ()를 쓰는 이유는 아래 코드가 더 깔끔하게 보이기 위해
             <React.Fragment> {/* root의 div안에 쓸데 없는 div 없애기 위해*/}
                 <div>{this.state.first} 곱하기 {this.state.second}의 값은?</div> {/* 구구단 문제 숫자 */}
                 <form onSubmit={this.onSubmit} class="forms">
-                    <input type="number" class="box" value={this.state.value} onChange={this.onChange} /> {/* 입력 칸 */}
-                    <button type="submit" class="btn">입력</button>
+                    {/* ref={(e) => {this.inputFocus = e;}} => 입력 칸 focus에 사용 */}
+                    <input ref={this.inputFocus} type="number" class="box" value={this.state.value} onChange={this.onChange} placeholder="답을 입력하세요." /> {/* 입력 칸 */}
+                    <button type="submit" class="btn">결과</button>
                 </form>
                 <div>{this.state.result}</div>  {/* 결과 값 */}
             </React.Fragment>
