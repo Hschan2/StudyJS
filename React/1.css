@@ -9,11 +9,12 @@ body {
 }
 
 .forms {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .box {
     padding: 6px 3px;
+    border-radius: 5px;
 }
 
 .btn {
