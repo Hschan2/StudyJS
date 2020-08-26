@@ -23,7 +23,7 @@ const Hook = () => { // 함수 컴포넌트라고 부름
 
     const onSubmitForm = (e) => {
         e.preventDefault();
-        if(parseInt(this.state.value) === this.state.first * this.state.second) {
+        if(parseInt(value) === first * second) {
             setResult(first + ' X ' + second + ' = ' + value + ', 정답!');
             setFirst(Math.ceil(Math.random() * 9));
             setSecond(Math.ceil(Math.random() * 9));
@@ -38,9 +38,9 @@ const Hook = () => { // 함수 컴포넌트라고 부름
 
     return <React.Fragment>
         <div>{first} X {second}의 값은?</div>
-        <form onSubmit={onSubmitForm} class="forms">
-            <input ref={inputRef} onChange={onChangeInput} value={value} class="box"/>
-            <button class="btn">입력</button>
+        <form onSubmit={onSubmitForm} className="forms">
+            <input ref={inputRef} onChange={onChangeInput} value={value} className="box"/>
+            <button className="btn">입력</button>
         </form>
         <div id="result">{result}</div>
     </React.Fragment>;
