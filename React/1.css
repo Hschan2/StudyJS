@@ -23,6 +23,7 @@ body {
     color: white;
     border: none;
     padding: 6px 6px;
+    margin-left: 5px;
 }
 
 .btn:hover {
