@@ -1,8 +1,8 @@
 {
-  "name": "allaboutjs",
+  "name": "react_lecture",
   "version": "1.0.0",
-  "description": "",
-  "main": "tspart2.js",
+  "description": "Javascript",
+  "main": "./ReactLecture/3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server"
@@ -11,13 +11,19 @@
     "type": "git",
     "url": "git+https://github.com/Hschan2/StudyJS.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Hong",
+  "license": "MIT",
   "devDependencies": {
-    "lite-server": "2.5.4"
+    "lite-server": "2.5.4",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
   },
   "bugs": {
     "url": "https://github.com/Hschan2/StudyJS/issues"
   },
-  "homepage": "https://github.com/Hschan2/StudyJS#readme"
+  "homepage": "https://github.com/Hschan2/StudyJS#readme",
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
 }
