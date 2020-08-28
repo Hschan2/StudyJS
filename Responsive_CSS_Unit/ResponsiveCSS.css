@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.text {
+    font-size: 10px; /* 고정적으로 브라우저 크기가 변해도 변하지 않음 */
+}
+
+.emParent {
+    /* 8em = 800% */
+    font-size: 8em; /* em => 부모의 폰트 사이즈의 상대적 크기로 계산. 기본적으로 16px. 8em -> 128px */
+}
+
+.emChild {
+    /* 부모의 0.5em = 50% */
+    font-size: 0.5em; /* 부모의 0.5배인 64px */
+}
+
+.remParent {
+    /* root. 즉, HTML에서 지정한 기본 16px 기준으로 16 * 8 */
+    font-size: 8rem; /*  */
+}
+
+.remChild {
+    /* root. 즉, HTML에서 지정한 기본 16px 기준으로 16 * 0.5 */
+    font-size: 0.5rem; /*  */
+}
+
+.vParent {
+ font-size: 50vw; /* 현재 브라우저 넓이의 반을 쓰겠다 */
+ font-size: 50vh; /* 현재 브라우저 높이의 반을 쓰겠다 */
+}
+
+.vChild {
+    font-size: 50vmin; /* 현재 브라우저의 넓이와 높이 중 작은 것에서 반을 쓰겠다 */
+    font-size: 50vmax; /* 현재 브라우저의 넓이와 높이 중 큰 것에서 반을 쓰겠다 */
+}
+
+.percentParent {
+    width: 500px;
+}
+
+.percentChild {
+    width: 50%; /* 부모의 상대적인 크기로. 즉 500px의 50% => 250px */
+}
