@@ -26,6 +26,8 @@
 ##### - tspart8
   Watch -> tsc -w => 자동적으로 새로고침, include and exclude files => 모듈을 이용해, Libs => bind
   
+### Javascript 알아가기
+  
 ##### - Process&Thread
   자바스크립트에서 쓰레드란?
 
@@ -41,11 +43,15 @@
 ##### - JSON
   JSON에서 stringify와 parse에 대해 알아보자
   
+### 입력받아서 음성으로 내보내기
+  
 ##### - TextToVoice
   음성 선택, 입력받은 값 음성으로 출력
   
 ##### - TextToVoice2
   음성 선택X. 익스플로어, 크롬, 엣지, 네이버 웨일마다 음성을 다르게 출력
+
+### React
 
 ##### - React
   React 기본 배우기 <br>
