@@ -48,6 +48,7 @@
   음성 선택X. 익스플로어, 크롬, 엣지, 네이버 웨일마다 음성을 다르게 출력
 
 ##### - React
-  React 기본 배우기<br>
-  React로 구구단 만들기 (시작)
+  React 기본 배우기 <br>
+  React Hook을 사용해서 구구단을 만들어보자 <br>
+  Webpack 설치<br>
   
