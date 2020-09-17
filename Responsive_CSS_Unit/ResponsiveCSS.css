@@ -44,3 +44,45 @@
 .percentChild {
     width: 50%; /* 부모의 상대적인 크기로. 즉 500px의 50% => 250px */
 }
+
+.level1 {
+    font-size: 2em; /* 부모의 크기에 따라 달라지는 반응형 크기, 32px */
+}
+
+.level2 {
+    font-size: 2em; /* 64px */
+}
+
+.level3 {
+    font-size: 2em; /* 128px */
+}
+
+.level4 {
+    font-size: 2em; /* 256px */
+}
+
+.thisIsh1 {
+    display: inline-block;
+    font-size: 5em; /* 16 * 5 */
+    background-color: mediumaquamarine;
+    padding: 0.1em;
+}
+
+.component {
+    width: 50%;
+    border: 1px solid burlywood;
+    font-size: 2rem; /* rem => root, 즉 body 자체의 크기로 부모와 상관없이 크기 일정 */
+}
+
+.title {
+    padding: 0.5em 0.5rem; /* 위아래 좌우 */
+    background-color: burlywood;
+}
+
+.contents {
+    padding: 0.5em;
+    font-size: 1rem;
+}
+
+/* rem => 어떤 컴포넌트와 상관없이 동일함을 유지하고 싶은 것에 사용 */
+/* em => padding과 같은 font-size에 따라 발생하고 싶은 것에 사용  */
