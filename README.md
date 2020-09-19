@@ -2,7 +2,7 @@
 
 ##### - tspart/part1<br>
   Promise 그리고 async와 await을 배워보자
-  
+___
 
 ### TypeScript가 뭐지?
 
@@ -26,8 +26,8 @@
 
 ##### - tspart8
   Watch -> tsc -w => 자동적으로 새로고침, include and exclude files => 모듈을 이용해, Libs => bind
-  
-
+  ___
+ 
 ### Javascript 알아가기
   
 ##### - Process&Thread
@@ -53,8 +53,8 @@
   
 ##### - TextToVoice2
   음성 선택X. 익스플로어, 크롬, 엣지, 네이버 웨일마다 음성을 다르게 출력
-
-
+ ___
+ 
 ### React
 
 ##### - React
