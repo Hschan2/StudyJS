@@ -44,7 +44,9 @@ ___
   
 ##### - JSON
   JSON에서 stringify와 parse에 대해 알아보자
-
+  
+##### - JSON
+  Class 및 CallBack 함수
 
 ### 입력받아서 음성으로 내보내기
   
