@@ -15,10 +15,10 @@ const reactBar = document.querySelector('.bar-react');
 
 var t1 = new TimelineLite();
 
-t1.fromTo(htmlBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(90% - 6px)`, ease: Power4.easeOut})
-    .fromTo(cssBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(90% - 6px)`, ease: Power4.easeOut})
-    .fromTo(javascriptBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(90% - 6px)`, ease: Power4.easeOut})
-    .fromTo(reactBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(90% - 6px)`, ease: Power4.easeOut})
+t1.fromTo(htmlBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(80% - 6px)`, ease: Power4.easeOut})
+    .fromTo(cssBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(75% - 6px)`, ease: Power4.easeOut})
+    .fromTo(javascriptBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(70% - 6px)`, ease: Power4.easeOut})
+    .fromTo(reactBar, .75, {width: `calc(0% - 6px)`}, {width: `calc(40% - 6px)`, ease: Power4.easeOut})
 
 const controller = new ScrollMagic.Controller();
 const scene = new ScrollMagic.Scene({
