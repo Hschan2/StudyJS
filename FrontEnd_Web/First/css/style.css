@@ -23,6 +23,7 @@ nav ul,
 
 body {
     background-color: #252627;
+    animation: transitionIn 0.75s;
 }
 
 header {
@@ -145,6 +146,7 @@ span.m-left {
 .about {
     height: 100vh;
     margin-top: 100px;
+    animation: fadeIn 1.5s;
 }
 
 .about h1,
@@ -188,6 +190,7 @@ span.m-left {
 
 .skills {
     height: 100vh;
+    animation: fadeIn 1.5s;animation: fadeIn 1.5s;
 }
 
 .skills h1,
@@ -276,6 +279,10 @@ div[class^='category-'] {
     grid-gap: 20px;
 }
 
+.work {
+    animation: fadeIn 1.5s;
+}
+
 .work a {
     justify-self: center;
     position: relative;
@@ -342,3 +349,27 @@ footer p {
     font-size: 1.2rem;
     padding: 30px 0;
 }
+
+@keyframes transitionIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 다양한 Animation (ex. fade In...)을 사용할 수 있는 방법 - AOS 라이브러리 사용 */
