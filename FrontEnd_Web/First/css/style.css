@@ -146,7 +146,6 @@ span.m-left {
 .about {
     height: 100vh;
     margin-top: 100px;
-    animation: fadeIn 1.5s;
 }
 
 .about h1,
@@ -190,7 +189,6 @@ span.m-left {
 
 .skills {
     height: 100vh;
-    animation: fadeIn 1.5s;animation: fadeIn 1.5s;
 }
 
 .skills h1,
@@ -279,10 +277,6 @@ div[class^='category-'] {
     grid-gap: 20px;
 }
 
-.work {
-    animation: fadeIn 1.5s;
-}
-
 .work a {
     justify-self: center;
     position: relative;
@@ -340,13 +334,13 @@ form input:last-child {
 
 footer hr {
     border: 2px solid #707070;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 footer p {
     text-align: center;
     color: #707070;
-    font-size: 1.2rem;
+    font-size: .7rem;
     padding: 30px 0;
 }
 
@@ -359,16 +353,6 @@ footer p {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
     }
 }
 

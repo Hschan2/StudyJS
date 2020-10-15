@@ -50,3 +50,4 @@ const showRequiredCategory = event => {
     getCategory.classList.remove('hideCategory');
     getCategory.classList.add('showCategory');
 }
+
