@@ -49,5 +49,5 @@ const showRequiredCategory = event => {
 
     getCategory.classList.remove('hideCategory');
     getCategory.classList.add('showCategory');
+    getCategory.style.transition = '1s';
 }
-
