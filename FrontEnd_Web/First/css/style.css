@@ -345,6 +345,10 @@ footer p {
     padding: 20px 0;
 }
 
+.hide {
+    opacity: 0;
+}
+
 @keyframes transitionIn {
     from {
         opacity: 0;
