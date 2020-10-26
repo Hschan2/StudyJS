@@ -28,8 +28,8 @@
 }
 
 .vParent {
- font-size: 50vw; /* 현재 브라우저 넓이의 반을 쓰겠다 */
- font-size: 50vh; /* 현재 브라우저 높이의 반을 쓰겠다 */
+    font-size: 50vw; /* 현재 브라우저 넓이의 반을 쓰겠다 */
+    font-size: 50vh; /* 현재 브라우저 높이의 반을 쓰겠다 */
 }
 
 .vChild {
@@ -84,5 +84,15 @@
     font-size: 1rem;
 }
 
+.square {
+    width: 25%;
+    height: 25%;
+    /* width: 25em; or 25rem */
+    /* height: 25em; or 25rem */
+    border: 5px solid black;
+    border-radius: 50%;
+}
+
 /* rem => 어떤 컴포넌트와 상관없이 동일함을 유지하고 싶은 것에 사용 */
 /* em => padding과 같은 font-size에 따라 발생하고 싶은 것에 사용  */
+/* 다만 border와 같은 것에는 그려지기는 하지만 화면에 크기와 상관없이 크기가 일정하다. %로 하면 화면에 크기에 따라 달라진다. */
