@@ -5,13 +5,13 @@ module.exports = {
     mode: 'development', // 실 시버스: production
     devtool: 'eval',
     resolve: { // 알아서 해당 js파일과 jsx파일이 있는지 파악
-        extensions: [
+        extensions: [ // 확장자. .jsx , .js 생략 가능
             '.js', '.jsx'
         ]
     },
 
     entry: { // 중요. 입력
-        app: ['./client.jsx', './WordRelay.jsx'],
+        app: ['./client', './WordRelay'],
     },
 
 module: {
