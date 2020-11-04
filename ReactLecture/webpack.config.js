@@ -31,15 +31,16 @@ module: {
             //     }],
             // ]
             // github.com/browserslist에서 확인 가능
-            plugins: ['@babel/plugin-proposal-class-properties'],
+            plugins: ['@babel/plugin-proposal-class-properties', 'react-hot-loader/babel',],
         },
     }],
 },
     plugins: [
-        new webpack.LoaderOptionsPlugin({debug: true}), // 옵션에 debug: true를 모두 넣어준다
+        // new webpack.LoaderOptionsPlugin({debug: true}), // 옵션에 debug: true를 모두 넣어준다
     ], // 확장 프로그램이라고 생각. 기본 적용 외 추가할 것들
     output: { // 중요. 출력
-        // path: path.join(__dirname, '폴더명'), => 폴더 하나로 합치기
-        filename: './app.js' // 출력할 js 파일
+        path: path.join(__dirname, 'dist'), // => 폴더 하나로 합치기
+        filename: './app.js', // 출력할 js 파일
+        publicPath: '/dist/', // 경로(가상 경로)를 dist 폴더 이하로 설정
     },
 }
