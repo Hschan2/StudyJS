@@ -12,7 +12,7 @@ module.exports = {
     },
 
     entry: { // 중요. 입력
-        app: ['./client', './WordRelay'],
+        app: ['./client', './GuGuDan', './WordRelay'],
     },
 
 module: {
