@@ -34,11 +34,16 @@ class BaseBall extends Component {
                 </form>
                 <div>시도: {this.state.tries.length}</div>
                 <ul>
-                    {[].map( (v) => {
+                    {[{fruit:'사과 ', taste:'맛있다'}, {fruit:'바나나', taste:'길다'}, {fruit:'포도', taste:'달다'}].map( (v, i) => { // i는 인덱스, 대신 i를 key값으로 넣으면 안된다. 성능 최적화에 문제 발생 차라리 문자 뒤에 i를 붙이는 게 낫다(그래도 비추천)
+                        // return 생략 가능
                         return (
-                            <li></li>
+                            // 배열 안에 고유한 것을 key에 적어야 한다. React가 최적화할 때 사용. Id와 같은 것을 사용 -> 필수, key의 값이 중복되면 에러
+                            <li key={v.fruit + v.taste}><b>{i} - {v.fruit}</b> - {v.taste}</li>
                         );
                     })}
+                    {/* <li><b>사과</b> - 맛있다</li>
+                    <li><b>바나나</b> - 길다</li>
+                    <li><b>포도</b> - 달다</li> */}
                 </ul>
             </>
         );
