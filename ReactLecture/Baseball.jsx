@@ -16,7 +16,10 @@ class BaseBall extends Component {
         answer: getNumbers(),
         tries: [],
     };
-    
+
+    // () => 를 해주는 이유 = this.을 사용하기 위해, () => 없이 쓰고 싶다면 constructor(props) {}를 사용해야 한다.
+    // state를 this.state = {}로 바꿔야 하며, this.onSubmitForm = this.onSubmitForm.bind(this);를 선언해야 한다.
+    // this.state = {}는 constructor 안에 있어야 한다.
     onSubmitForm = () => {
 
     };
@@ -46,7 +49,7 @@ class BaseBall extends Component {
                         return (
                             // 배열 안에 고유한 것을 key에 적어야 한다. React가 최적화할 때 사용. Id와 같은 것을 사용 -> 필수, key의 값이 중복되면 에러
                             // key를 기준으로 element 추가, 수정, 삭제를 판단하기 때문에 배열 순서가 바뀌면 문제 발생
-                            <Try value={v} index={i}></Try> // 가독성을 위해 사용 (컴포넌트 새로 생성 => try.js), v와 i의 값을 try.js에 넘겨줘야 한다. 이것을 props (html에서 attribute)
+                            <Try key={v.fruit + v.taste} value={v} index={i}></Try> // 가독성을 위해 사용 (컴포넌트 새로 생성 => try.js), v와 i의 값을 try.js에 넘겨줘야 한다. 이것을 props (html에서 attribute)
                         );
                     })}
                     {/* <li><b>사과</b> - 맛있다</li>
