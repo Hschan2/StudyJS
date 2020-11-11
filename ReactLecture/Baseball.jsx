@@ -1,38 +1,68 @@
-// require vs import
-// import React from 'react'; // import 사용 방법
-// 다른 파일을 요청 받아서 불러오고 변수에 넣어준다.
-// const React = require('react');
 import React, {Component} from 'react';
 import Try from './try.js';
 
-function getNumbers() { // 겹치지 않는 숫자 랜덤으로 뽑기
-
+function getNumbers() {
+    const candidate = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const array = [];
+    for(let i = 0; i < 4; i++) {
+        const chosen = candidate.splice(Math.floor(Math.random * (9 - i)), 1)[0];
+        array.push(chosen);
+    }
 }
 
-class BaseBall extends Component {
-    state = { // 변하는 값이 있을 때 사용
+class Baseball extends Component {
+    state = {
         result: '',
         value: '',
-        answer: getNumbers(),
-        tries: [],
+        answer: getNumbers(), // 랜덤 숫자가 추출
+        tries: [], // React에서 배열에 값을 넣을 때, push 사용 비추천
     };
 
-    // () => 를 해주는 이유 = this.을 사용하기 위해, () => 없이 쓰고 싶다면 constructor(props) {}를 사용해야 한다.
-    // state를 this.state = {}로 바꿔야 하며, this.onSubmitForm = this.onSubmitForm.bind(this);를 선언해야 한다.
-    // this.state = {}는 constructor 안에 있어야 한다.
-    onSubmitForm = () => {
-
+    onSubmitForm = (e) => {
+        e.preventDefault();
+        if(this.state.value === this.state.answer.join('')) { // 맞추었을 때
+            this.setState({
+                result: '홈런',
+                tries: [...this.state.tries, {try: this.state.value, result: '홈런'}], // ... => 기존 배열 복사 (기존 배열 안에 값도 복사), {} => 넣을 값
+            });
+            alert('게임을 다시 시작합니다.');
+            this.setState({
+                value: '',
+                answer: getNumbers(),
+                tries: [],
+            });
+        } else { // 틀렸을 때
+            if(this.state.tries.length >= 9) {
+                this.setState({
+                    result: `10번 이상 시도로 게임 종료, 답은 ${this.state.answer.join(',')}`,
+                });
+                alert('게임을 다시 시작합니다.');
+                this.setState({
+                    value: '',
+                    answer: getNumbers(),
+                    tries: [],
+                });
+            } else {
+                for(let i = 0; i < 4; i++) {
+                    if(answerArray[i] === this.state.answer[i]) {
+                        strike++;
+                    } else if(this.state.answer.includes(answerArray[i])) {
+                        ball++;
+                    }
+                }
+                this.setState({
+                    tries: [...this.state.tries, {try: this.state.value, result: '${strike} 스트라이크, ${ball} 볼 입니다.'}],
+                    value: '',
+                });
+            }
+        }
     };
 
-    onChangeInput = () => {
-
+    onChangeInput = (e) => {
+        this.setState({
+            value: e.target.value,
+        });
     }
-
-    fruits = [
-        {fruit:'사과 ', taste:'맛있다'},
-        {fruit:'바나나', taste:'길다'},
-        {fruit:'포도', taste:'달다'},
-    ]
 
     render() {
         return (
@@ -44,26 +74,16 @@ class BaseBall extends Component {
                 </form>
                 <div>시도: {this.state.tries.length}</div>
                 <ul>
-                    {this.fruits.map( (v, i) => { // i는 인덱스, 대신 i를 key값으로 넣으면 안된다. 성능 최적화에 문제 발생 차라리 문자 뒤에 i를 붙이는 게 낫다(그래도 비추천)
-                        // return 생략 가능
+                    {this.state.tries.map( (v, i) => { // v는 value, i는 index
                         return (
-                            // 배열 안에 고유한 것을 key에 적어야 한다. React가 최적화할 때 사용. Id와 같은 것을 사용 -> 필수, key의 값이 중복되면 에러
-                            // key를 기준으로 element 추가, 수정, 삭제를 판단하기 때문에 배열 순서가 바뀌면 문제 발생
-                            <Try key={v.fruit + v.taste} value={v} index={i}></Try> // 가독성을 위해 사용 (컴포넌트 새로 생성 => try.js), v와 i의 값을 try.js에 넘겨줘야 한다. 이것을 props (html에서 attribute)
+                            // index를 key쓰지 말자. (이 경우에는 학습이기 때문에 예외)
+                            <Try key={`${i+1}차 시도 : `} tryInfo={v}></Try>
                         );
                     })}
-                    {/* <li><b>사과</b> - 맛있다</li>
-                    <li><b>바나나</b> - 길다</li>
-                    <li><b>포도</b> - 달다</li> */}
                 </ul>
             </>
         );
     }
 }
 
-
-// export default BaseBall; // import로 라이브러리 혹은 파일을 불러왔을 때. import Baseball, {}로 감싸지 않았을 때. ES2015 방법
-// export const hello = 'hello'; // import {hello}, 변수명을 겹치지 않게 많이 사용 가능
-// 노드 모듈 시스템에서 module.exports = {hello : 'a' } == exports.hello = 'a'
-// babel이 import를 require로 바꿔주는 역할도 하기 때문에 호환이 된다.
-module.exports = BaseBall;
+module.exports = Baseball;
