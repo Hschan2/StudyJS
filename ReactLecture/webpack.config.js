@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+// process.env.NODE_ENV = 'production'; => 실제 서비스를 할 시 환경 변수를 production으로 설정
 
 module.exports = {
     name: 'word-relay-setting',
-    mode: 'development', // 실 시버스: production
+    mode: 'development', // 실제 서비스를 할 시: production로 변경
     devtool: 'eval',
     resolve: { // 알아서 해당 js파일과 jsx파일이 있는지 파악
         extensions: [ // 확장자. .jsx , .js 생략 가능
