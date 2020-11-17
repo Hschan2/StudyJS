@@ -63,9 +63,15 @@ ___
   React 기본 배우기 <br>
   React Hook을 사용해서 구구단을 만들어보자 <br>
   Webpack 설치<br>
+  Babel 설치<br>
+  구구단 게임 만들기 with Hook<br>
+  끝말잇기 게임 만들기 with Hook<br>
+  React-loader-hot 설치 (실시간 통신)<br>
+  숫자야구 게임 만들기 with Hook <br>
 ___
 
 ### Develop a Web Site
 
 ##### Frontend_Web
 [Frontend_Web/OneWebPage](https://hschan2.github.io/StudyJS/FrontEnd_Web/First/First.html)
+
