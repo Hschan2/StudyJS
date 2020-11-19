@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent, memo} from 'react';
 
 // Hook
-const Try = ({tryInfo}) => { // 구조분해한 {tryInfo}를 props로 한다면 props.tryInfo.try
+// memo => Hook 버전의 PureComponent
+const Try = memo(({tryInfo}) => { // 구조분해한 {tryInfo}를 props로 한다면 props.tryInfo.try
     return (
         <li style={{listStyle:"none"}}>
             <div>{tryInfo.try}</div>
             <div>{tryInfo.result}</div>
         </li>
     )
-};
+});
 
-// class Try extends Component { // Component => 재사용성
+// class Try extends Component { // Component => 재사용성, PureComponent => shouldComponentUpdate를 알아서 자동으로 구현한 컴포넌트
 //     render() {
 //         return (
 //             // 부모 .jsx에서 넘긴 이름 그대로 가져와야 한다. Baseball.jsx에서 value={v} index={i}로 선언하였으니 value와 index로 가져와야 한다.
@@ -20,6 +21,18 @@ const Try = ({tryInfo}) => { // 구조분해한 {tryInfo}를 props로 한다면 
 //                 <div>{this.props.tryInfo.try}</div>
 //                 <div>{this.props.tryInfo.result}</div>
 //             </li>
+//         );
+//     }
+// }
+
+// class Try extends PureComponent { PureComponent => shouldComponentUpdate를 알아서 자동으로 구현한 컴포넌트
+//     render() {
+//          const {tryInfo} = this.props;
+//         return (
+//              <li style={{listStyle:"none"}}>
+//                  <div>{tryInfo.try}</div>
+//                  <div>{tryInfo.result}</div>
+//              </li>
 //         );
 //     }
 // }

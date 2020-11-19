@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState, memo} from 'react';
 import Try from './try.js';
 
 // 외부에서 작성한 함수는 Hook 영향 X
@@ -13,7 +13,8 @@ function getNumbers() { // this를 사용하지 않을 때. class 안에다 사�
 }
 
 // Hook ver.
-const Baseball = () => {
+// 자식들이 모두 PureComponent나 memo면 부모도 PureComponent나 memo를 적용할 수 있다.
+const Baseball = memo(() => {
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
@@ -75,7 +76,7 @@ const Baseball = () => {
             </ul>
         </>
     );
-};
+});
 
 // class Baseball extends Component {
 //     state = {
