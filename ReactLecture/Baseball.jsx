@@ -1,4 +1,4 @@
-import React, {Component, useState, memo} from 'react';
+import React, {Component, useState, memo, createRef, useRef} from 'react';
 import Try from './try.js';
 
 // 외부에서 작성한 함수는 Hook 영향 X
@@ -19,6 +19,7 @@ const Baseball = memo(() => {
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
     const [tries, setTries] = useState([]);
+    const inputRef = useRef(null); // Hook ver. Ref
 
     const onSubmitForm = (e) => {
         e.preventDefault();
@@ -31,6 +32,9 @@ const Baseball = memo(() => {
             setValue('');
             setAnswer(getNumbers());
             setTries([]);
+            inputRef.current.focus();
+            // react.createRef ver.
+            // this.inputRef.current.focus();
         } else { // 틀렸을 때
             if(tries.length >= 9) {
                 setResult(`10번 이상 시도로 게임 종료, 답은 ${answer.join(',')}`);
@@ -38,6 +42,9 @@ const Baseball = memo(() => {
                 setValue('');
                 setAnswer(getNumbers());
                 setTries([]);
+                inputRef.current.focus();
+                // react.createRef ver.
+                // this.inputRef.current.focus();
             } else {
                 for(let i = 0; i < 4; i++) {
                     if(answerArray[i] === answer[i]) {
@@ -50,6 +57,9 @@ const Baseball = memo(() => {
                     return [...prevTries, {try: value, result: '${strike} 스트라이크, ${ball} 볼 입니다.'}];
                 });
                 setValue('');
+                inputRef.current.focus();
+                // react.createRef ver.
+                // this.inputRef.current.focus();
             }
         }
     };
@@ -58,11 +68,21 @@ const Baseball = memo(() => {
         setValue(e.target.value);
     };
 
+    // Ref를 쉽게 하는 방법 (클래스 사용에서 Hook에서 사용하는 것처럼 비슷하게 만들기. current를 사용해서 달라짐을 적게)
+    // react.createRef ver. => Class 사용을 했을 때
+    // inputRef = createRef();
+
+    // 이전 방식
+    // 함수 형식이기 때문에 console.log 등 다른 동작 추가 가능
+    // 때에 따라 다르게 사용하는 것이 좋음
+    // inputRef;
+    // inputRef = (c) => {this.inputRef = c;};
+
     return (
         <>
             <h1>{result}</h1>
             <form onSubmit={onSubmitForm}>
-            <input maxLength={4} value={value} onChange={onChangeInput} />
+            <input ref={inputRef} maxLength={4} value={value} onChange={onChangeInput} />
             <button>입력</button>
             </form>
             <div>시도: {tries.length}</div>
