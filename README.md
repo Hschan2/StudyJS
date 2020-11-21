@@ -71,6 +71,8 @@ ___
   shouldComponentUpdate <br>
   PureComponent <br>
   React.memo <br>
+  createRef <br>
+
 
 ___
 
