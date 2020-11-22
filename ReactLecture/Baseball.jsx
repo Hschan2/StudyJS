@@ -78,6 +78,7 @@ const Baseball = memo(() => {
     // inputRef;
     // inputRef = (c) => {this.inputRef = c;};
 
+    // render 안에 setState() 사용 X => 무한 반복
     return (
         <>
             <h1>{result}</h1>
