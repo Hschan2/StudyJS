@@ -68,6 +68,12 @@ ___
   끝말잇기 게임 만들기 with Hook<br>
   React-loader-hot 설치 (실시간 통신)<br>
   숫자야구 게임 만들기 with Hook <br>
+  shouldComponentUpdate <br>
+  PureComponent <br>
+  React.memo <br>
+  createRef <br>
+
+
 ___
 
 ### Develop a Web Site
