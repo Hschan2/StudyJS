@@ -31,3 +31,23 @@ body {
     cursor: pointer;
     background: rgba(0, 0, 0, 0.7);
 }
+
+#screen {
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    user-select: none;
+}
+
+#screen.waiting {
+    background-color: brown;
+}
+
+#screen.ready {
+    background-color: burlywood;
+    color: white;
+}
+
+#screen.now {
+    background-color: teal;
+}

@@ -5,6 +5,7 @@ const {hot} = require('react-hot-loader/root'); // 웹 수정을 실시간으로
 const GuGuDan = require('./GuGuDan');
 const WordRelay = require('./WordRelay'); // WordRelay.jsx 불러오기. webpack이 알아서 파악하고 무엇이 무엇을 불러와야 하는지 스스로 동작
 const baseBall = require(`./Baseball`);
+const ResponseCheck = require('./ResponseCheck');
 
 const Hot = hot(baseBall); // 수정 사항 있을 시 알아서 반영
 
