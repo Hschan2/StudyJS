@@ -73,8 +73,8 @@ ___
   React.memo <br>
   createRef <br>
 
-### Drag and Drop API
-  Drag And Drop API를 사용해서 메뉴 만들기
+### Drag and Drop API JS
+  Drag And Drop API를 사용해서 드래그 앤 드랍이 가능한 메뉴 만들기
 ___
 
 ### Develop a Web Site
