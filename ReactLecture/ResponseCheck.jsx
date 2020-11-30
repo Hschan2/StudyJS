@@ -44,10 +44,21 @@ class ResponseCheck extends Component {
         }
     };
 
+    onReset = () => {
+        this.setState({
+            result: [], // result가 0이면 result.length이 0이 되어서 null이 반환 => 초기화
+        });
+    }
+
     renderAverage = () => {
         const {result} = this.state;
         // if문 대신 사망연산자 사용
-        return result.length === 0 ? null : <div>평균 시간: {result.reduce((a, c) => a + c) / this.state.result.length}ms</div>;
+        return result.length === 0
+            ? null
+            : <>
+                <div>평균 시간: {result.reduce((a, c) => a + c) / this.state.result.length}ms</div>
+    <button onClick={this.onReset}>Reset</button>
+            </>
     };
 
     // React에서 if, for 사용 불가
