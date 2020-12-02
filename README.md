@@ -72,6 +72,9 @@ ___
   PureComponent <br>
   React.memo <br>
   createRef <br>
+  Props와 State 연결하기<br>
+  React 조건문과 반복문<br>
+  setTimeout (성능 체크)<br>
 
 ### Drag and Drop API JS
   Drag And Drop API를 사용해서 드래그 앤 드랍이 가능한 메뉴 만들기

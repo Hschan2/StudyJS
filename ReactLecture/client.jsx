@@ -7,6 +7,6 @@ const WordRelay = require('./WordRelay'); // WordRelay.jsx 불러오기. webpack
 const baseBall = require(`./Baseball`);
 const ResponseCheck = require('./ResponseCheck');
 
-const Hot = hot(baseBall); // 수정 사항 있을 시 알아서 반영
+const Hot = hot(ResponseCheck); // 수정 사항 있을 시 알아서 반영
 
 ReactDom.render(<Hot />, document.querySelector('#root')); // jsx 문법
