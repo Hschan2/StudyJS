@@ -9,7 +9,7 @@ const ResponseCheck = () => {
     const endTime = useRef();
     // useRef => 사용할 때 timeOut.current로 사용해야 한다
     // setState => 사용 시 return 부분이 다시 실행
-    // setRef => 사용 시 return 부분이 다시 실행되지 않음 -> 실행될 때마다 렌더링시키고 싶지 않을 때, 화면은 바뀌지 않지만 값이 바뀌는 것을 Ref에 사용
+    // setRef => 사용 시 return 부분이 다시 실행되지 않음 -> 실행될 때마다 렌더링시키고 싶지 않을 때, 화면은 바뀌지 않지만 값이 바뀌는 것을 Ref에 사용, 즉. 화면에 영향을 주지 않음
 
     const onClickScreen = () => {
         if(state === 'waiting') {
@@ -54,7 +54,35 @@ const ResponseCheck = () => {
             <div id="screen" className={state} onClick={onClickScreen}>
                 {message}
             </div>
-            {renderAverage}
+            {renderAverage()}
+            {/* {(() => {
+                if(result.length === 0) {
+                    return null;
+                } else {
+                    return <>
+                    <div>평균 시간: {result.reduce((a, c) => a + c) / result.length}ms</div>
+                    <button onClick={onReset}>Reset</button>
+                </>
+                }
+            })()} */}
+            {/* 위 코드는 return문에서 바로 조건문 실행. 즉시 실행 코드로 작성 */}
+
+            {/* {(() => {
+                const array = [];
+                for(let i = 0; i < result.length; i++) {
+                    array.push('...');
+                }
+                return [];
+            })()} */}
+            {/* 위 코드는 return문에서 바로 반복문 실행. 즉시 실행 코드로 작성 */}
+            {/* 배열에 push할 때, jsx문으로 값을 넣는 것 가능. 즉, jsx 문법으로 배열에 담는 것 가능
+            return [
+                <div key="apple">사과</div>
+                <div key="pear">배</div>
+                <div key="grape">포도</div>
+                <div key="orange">귤</div>
+                <div key="strawberry">딸기</div>
+            ] */}
         </>
     );
 }
