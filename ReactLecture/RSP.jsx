@@ -71,7 +71,9 @@ class RSP extends Component {
         }
     };
 
-    onClickBtn = (choose) => {
+    // 고차함수 사용, () => = React에서 자주 사용하는 패턴
+    // render에서 <button id="scissor" className="btn" onClick={() => this.onClickBtn('바위')}>바위</button>에서 () => 을 대신함
+    onClickBtn = (choose) => () => {
         const { imgCoord } = this.state;
         clearInterval(this.interval); // Interval 멈춤
         const myScore = scores[choose];
@@ -111,9 +113,9 @@ class RSP extends Component {
             <>
                 <div id="computer" style={{background: `url(https://en.pimg.jp/023/182/267/1/23182267.jpg) ${imgCoord} 0`}} />
                 <div>
-                    <button id="scissor" className="btn" onClick={() => this.onClickBtn('바위')}>바위</button>
-                    <button id="scissor" className="btn" onClick={() => this.onClickBtn('가위')}>가위</button>
-                    <button id="scissor" className="btn" onClick={() => this.onClickBtn('보')}>보</button>
+                    <button id="scissor" className="btn" onClick={this.onClickBtn('바위')}>바위</button>
+                    <button id="scissor" className="btn" onClick={this.onClickBtn('가위')}>가위</button>
+                    <button id="scissor" className="btn" onClick={this.onClickBtn('보')}>보</button>
                 </div>
                 <div>{result}</div>
                 <div>점수 : {score}점</div>
