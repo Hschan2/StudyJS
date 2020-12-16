@@ -24,7 +24,6 @@ Library (Function bind...)
   eventLoof (이벤트 루프)
   JSON (stringify, parse)
   Class (Class, CallBack Function)
-
   ```
   ___
 
@@ -40,21 +39,27 @@ Library (Function bind...)
 
 ##### - React Lecture
 ```
-  React 기본 배우기 <br>
-  React Hook을 사용해서 구구단을 만들어보자 <br>
-  Webpack 설치<br>
-  Babel 설치<br>
-  구구단 게임 만들기 with Hook<br>
-  끝말잇기 게임 만들기 with Hook<br>
-  React-loader-hot 설치 (실시간 통신)<br>
-  숫자야구 게임 만들기 with Hook <br>
-  shouldComponentUpdate <br>
-  PureComponent <br>
-  React.memo <br>
-  createRef <br>
-  Props와 State 연결하기<br>
-  React 조건문과 반복문<br>
-  setTimeout (성능 체크)<br>
+  React 기본 배우기
+  React Hook을 사용해서 구구단을 만들어보자
+  Webpack 설치
+  Babel 설치
+  구구단 게임 만들기 with Hook
+  끝말잇기 게임 만들기 with Hook
+  React-loader-hot 설치 (실시간 통신)
+  숫자야구 게임 만들기 with Hook
+  shouldComponentUpdate
+  PureComponent
+  React.memo
+  createRef
+  Props와 State 연결하기
+  React 조건문과 반복문
+  setTimeout (성능 체크)
+  return 안에 for문, if문
+  React LifeCycle
+  setInterval with LifeCycle
+  가위바위보 게임 with Hook
+  고차 함수
+  useEffect
 ```
 
 ### Drag and Drop API JS
