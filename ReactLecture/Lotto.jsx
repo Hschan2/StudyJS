@@ -30,8 +30,7 @@ class Lotto extends Component {
     // 클리어 작업을 위해, Hook에서 useRef 대신
     timeouts = [];
 
-    // 실제로 로또 번호 값 넣어주기 (setTimeout 사용)
-    componentDidMount() {
+    runTimeouts = () => {
         const {winNumbers} = this.state;
         for(let i = 0; i < winNumbers.length - 1; i++) {
             this.timeouts[i] = setTimeout(() => {
@@ -48,6 +47,21 @@ class Lotto extends Component {
                 redo: true, // 한 번 더 버튼 보이기
             });
         }, 7000);
+    }
+
+    // 실제로 로또 번호 값 넣어주기 (setTimeout 사용)
+    componentDidMount() {
+        this.runTimeouts();
+    }
+
+    // 버튼 누르고 나서 다시 실행하기 위해
+    // prevState => 버튼을 누를 때, 바뀌기 전 값
+    // setState 될 때마다 실행
+    componentDidUpdate(prevProps, prevState) {
+        // 버튼을 누르고 로또 번호가 초기화 되었을 때
+        if(this.state.winBalls.length === 0) {
+            this.runTimeouts();
+        }
     }
 
     // 공 넣어주기 끝나면 setTimeout 종료
