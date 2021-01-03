@@ -60,7 +60,9 @@ Library (Function bind...)
   가위바위보 게임 with Hook
   고차 함수
   useEffect
-  로또 게임 (setTimeout)
+  로또 게임
+  setTimeout 여러 번 사용하기
+  componentDidUpdate
 ```
   ___
 ### Drag and Drop API JS
