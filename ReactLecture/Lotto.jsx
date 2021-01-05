@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useRef, useEffect} from 'react';
 import Ball from './Ball';
 
 // 로또 번호 랜덤 뽑기
@@ -17,6 +17,63 @@ function getWinNumbers() {
     const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c);
 
     return [...winNumbers, bonusNumber];
+}
+
+// Hook ver.
+const Lotto = () => {
+    const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+    const [winBalls, setWinBalls] = useState([]);
+    const [bonus, setBonus] = useState(null);
+    const [redo, setRedo] = useState(false);
+    const timeouts = useRef([]);
+
+    // componentDidMount(), componentDidUpdate(), componentWillUnmount() Hook ver.
+    useEffect(() => {
+        for(let i = 0; i < winNumbers.length - 1; i++) {
+            timeouts.current[i] = setTimeout(() => { // current에 직접 넣는 것이 아니라 요소에 값을 넣어주는 것이기 때문에 값 변경으로 치지 않음
+                setWinBalls((prevBalls) => [...prevBalls, winNumbers[i]])
+            }, (i + 1) * 1000);
+        }
+        timeouts.current[6] = setTimeout(() => {
+            setBonus(winNumbers[6]);
+            setRedo(true);
+        }, 7000);
+        // componentWillUnmount
+        return () => {
+            timeouts.current.forEach((v) => {
+                clearTimeout(v);
+            });
+        };
+    }, [timeouts.current]);
+    // 빈 배열이면 = componentDidMount
+    // 배열에 요소가 있으면 = componentDidMount, componentDidUpdate 동시 수행
+    // 배열 요소에 componentDidUpdate할 조건 넣어도 가능
+    // winBalls.length === 0로 조건을 걸 경우, useEffect가 2번 실행
+    //timeouts.current로 조건을 걸 경우, onClickRedo할 때 값이 변경되기 때문에 전과 같은 실행 가능
+    // 배열 요소에 변경되는 시점을 넣는 것
+
+    const onClickRedo = () => {
+        setWinNumbers(getWinNumbers());
+        setWinBalls([]);
+        setBonus(null);
+        setRedo(false);
+        
+        timeouts.current = []; // current에 직접 넣어주는 것이기 때문에 값 변경으로 침
+    };
+
+    return (
+        <>
+            <div>로또</div>
+            <div id = "결과창">
+                {/* 반복문 */}
+                {winBalls.map((v) => <Ball key={v} number={v} />)}
+            </div>
+            <div>보너스 숫자</div>
+            {/* 조건문 */}
+            {bonus && <Ball number = {bonus} />}
+            {redo && <button onClick = {onClickRedo}>번호 추출</button>}
+        </>
+    );
 }
 
 class Lotto extends Component {
@@ -59,6 +116,7 @@ class Lotto extends Component {
     // setState 될 때마다 실행
     componentDidUpdate(prevProps, prevState) {
         // 버튼을 누르고 로또 번호가 초기화 되었을 때
+        // this.timeouts.length === 0도 가능
         if(this.state.winBalls.length === 0) {
             this.runTimeouts();
         }
