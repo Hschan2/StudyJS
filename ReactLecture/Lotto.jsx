@@ -1,4 +1,4 @@
-import React, {Component, useState, useRef, useEffect} from 'react';
+import React, {Component, useState, useRef, useEffect, useMemo, useCallback} from 'react';
 import Ball from './Ball';
 
 // 로또 번호 랜덤 뽑기
@@ -21,7 +21,13 @@ function getWinNumbers() {
 
 // Hook ver.
 const Lotto = () => {
-    const [winNumbers, setWinNumbers] = useState(getWinNumbers());
+    // useMemo = 다시 실행되는 일 방지, 불필요한 렌더링 발생 방지
+    // useMemo는 꼭 두 번째 인자 필수. 빈 배열일 경우 다시 실행되는 일 방지
+    // 두 번째 인자가 바뀔 시, getWinNumbers() 다시 실행
+    // Hooks가 getWinNumbers()의 return을 기억한다.
+    // useMemo = 복잡한 함수 값 기억, useRef = 일반적인 값 기억
+    const lottoNumbers = useMemo(() => getWinNumbers(), []);
+    const [winNumbers, setWinNumbers] = useState(lottoNumbers);
     const [winBalls, setWinBalls] = useState([]);
     const [bonus, setBonus] = useState(null);
     const [redo, setRedo] = useState(false);
@@ -52,14 +58,19 @@ const Lotto = () => {
     //timeouts.current로 조건을 걸 경우, onClickRedo할 때 값이 변경되기 때문에 전과 같은 실행 가능
     // 배열 요소에 변경되는 시점을 넣는 것
 
-    const onClickRedo = () => {
+    // useCallback = 함수 자체를 기억
+    // 함수 자체가 크기가 크다 혹은 비용이 많이 나간다고 할 때, 사용 용이
+    // But, 값이 변해도 너무 잘 기억하기 때문에 첫 번째 값이 계속 저장 유지
+    // useCallback안에 사용되는 state는 [] 안에 넣어주기 => 이전 값 잊기
+    // 아래 <Ball></Ball>같이 자식에 onClick을 하게 되면 useCallback 필수
+    const onClickRedo = useCallback(() => {
         setWinNumbers(getWinNumbers());
         setWinBalls([]);
         setBonus(null);
         setRedo(false);
         
         timeouts.current = []; // current에 직접 넣어주는 것이기 때문에 값 변경으로 침
-    };
+    }, [winNumbers]); // []의 값이 바뀌면 새로 시작
 
     return (
         <>
