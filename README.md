@@ -63,6 +63,8 @@ Library (Function bind...)
   로또 게임
   setTimeout 여러 번 사용하기
   componentDidUpdate
+  useEffect로 Update 확인
+  useMemo, useCallback 사용하기
 ```
   ___
 ### Drag and Drop API JS
