@@ -13,7 +13,7 @@ module.exports = {
     },
 
     entry: { // 중요. 입력
-        app: ['./client', './GuGuDan', './WordRelay', './Baseball.jsx', './ResponseCheck.jsx'],
+        app: ['./client', './GuGuDan', './WordRelay', './Baseball.jsx', './ResponseCheck.jsx', './RSP.jsx', './Binding.jsx', './Lotto.jsx', './TicTacToc.jsx',],
     },
 
 module: {
