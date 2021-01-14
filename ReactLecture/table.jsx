@@ -1,9 +1,12 @@
 import React from 'react';
 import Tr from './tr';
 
-const Table = () => {
+// TicTacToc에서 받아온 onClick (onClickTable) 가져오기
+const Table = ({ onClick, tableData }) => {
     return (
-        <Tr>{''}</Tr>
+        <table onClick = {onClick}>
+            {Array(tableData.length).fill().map((tr) => (<Tr rowData = {tableData[i]} />))}
+        </table>
     )
 };
 

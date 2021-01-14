@@ -2,15 +2,27 @@ import React, {useState, useReducer} from 'react';
 import Table from './table';
 
 // 변수 값 초기화
+// state 직접 수정 불가
 const initialState = {
     winner: '',
     turn: '0',
     tableData: [['', '', ''], ['', '', ''], ['', '', '']],
 }
 
-// 초기화된 변수 값을 어떻게 바꿀 것인가
-const reducer = (state, action) => {
+// action의 이름은 대문자로
+const SET_WINNER = 'SET_WINNER';
 
+// 초기화된 변수 값을 어떻게 바꿀 것인가
+// action 처리
+const reducer = (state, action) => {
+    switch(action.type) {
+        case SET_WINNER:
+            // state.winner = action.winner처럼 값을 직접 변경하면 안된다.
+            return {
+                ...state, // state 값 복사 (새로운 state)
+                winner: action.winner
+            }
+    }
 }
 
 const TicTacToc = () => {
@@ -24,10 +36,18 @@ const TicTacToc = () => {
 
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    const onClickTable = useCallback(() => {
+        // dispatch 안에 액션 객체 생성, 값 변경
+        // 값을 직접 바꿔주는 역할로 reducer를 이용
+        dispatch({ type: SET_WINNER, winner = '0' });
+    }, []);
+
     return (
+        // 클릭하면 dispatch 실행
+        // tableData = {state.tableData} = 3 X 3 테이블 만들기
         <>
-            <Table></Table>
-            {winner && <div>{winner}의 승리</div>}
+            <Table onClick = {onClickTable} tableData = {state.tableData}></Table>
+            {state.winner && <div>{state.winner}의 승리</div>}
         </>
     )
 }
