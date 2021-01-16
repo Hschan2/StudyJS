@@ -10,7 +10,11 @@ const initialState = {
 }
 
 // action의 이름은 대문자로
-const SET_WINNER = 'SET_WINNER';
+// export로 해서 모듈로 만들기
+// 자식노드에서 사용할 것이기 때문에
+export const SET_WINNER = 'SET_WINNER';
+export const CLICK_CELL = 'CLICK_CELL';
+export const CHANGE_TURN = 'CHANGE_TURN';
 
 // 초기화된 변수 값을 어떻게 바꿀 것인가
 // action 처리
@@ -22,6 +26,23 @@ const reducer = (state, action) => {
                 ...state, // state 값 복사 (새로운 state)
                 winner: action.winner
             }
+        case CLICK_CELL: { // 불변성 만들기
+            // 얕은 복사하기 (기존의 변수와 같지 않고 다르게 만들어서 불변성 유지)
+            // 아래의 tableData와 맨 위의 기존에 사용한 tableData는 같지 않다. 복사해서 사용한다.
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...tableData[action.row]]; // immer 라이브러리로 해결 가능
+            tableData[action.row][action.cell] = state.turn; // 클릭했을 때, 해당 칸에 o, x 들어간다
+            return {
+                ...state,
+                tableData,
+            }
+        }
+        case CHANGE_TURN: {
+            return {
+                ...state,
+                turn: state.turn === 'O' ? 'X' : 'O',
+            }
+        }
     }
 }
 
@@ -46,7 +67,7 @@ const TicTacToc = () => {
         // 클릭하면 dispatch 실행
         // tableData = {state.tableData} = 3 X 3 테이블 만들기
         <>
-            <Table onClick = {onClickTable} tableData = {state.tableData}></Table>
+            <Table onClick = {onClickTable} tableData = {state.tableData} dispatch = {dispatch}></Table>
             {state.winner && <div>{state.winner}의 승리</div>}
         </>
     )
