@@ -1,4 +1,4 @@
-import React, {useState, useReducer, useEffect} from 'react';
+import React, {useState, useReducer, useEffect, memo} from 'react';
 import Table from './table';
 
 // 변수 값 초기화
@@ -59,7 +59,7 @@ const reducer = (state, action) => {
     }
 }
 
-const TicTacToc = () => {
+const TicTacToc = memo(() => {
     // const [winner, setWinner] = useState('');
     // const [turn, setTurn] = useState('0');
     // 3 X 3 Table 만들기, 2차원 배열
@@ -131,6 +131,6 @@ const TicTacToc = () => {
             {winner && <div>{winner}의 승리</div>}
         </>
     )
-}
+});
 
 export default TicTacToc;
