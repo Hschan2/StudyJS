@@ -1,9 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
+import { START_GAME, TableContext } from './mineSearch';
 
 const mineForm = () => {
     const [row, setRow] = useState(10); // 행 초기화
     const [cell, setCell] = useState(10); // 열 초기화
     const [mine, setMine] = useState(20); // 지뢰 개수 초기화
+    const { dispatch } = useContext(TableContext)
 
     // 불필요한 렌더링을 방지하기 위해 useCallback
     const onChangeRow = useCallback((e) => {
@@ -20,8 +22,8 @@ const mineForm = () => {
 
     // Context API 사용
     const onClickBtn = useCallback((e) => {
-        
-    }, []);
+        dispatch({ type: START_GAME, row, cell, mine });
+    }, [row, cell, mine]);
 
     return (
         <div>
