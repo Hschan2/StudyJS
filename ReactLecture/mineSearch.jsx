@@ -28,6 +28,42 @@ const initialState = {
     result: '',
 };
 
+// 지뢰 칸과 지뢰 생성
+const plantMine = (row, cell, mine) => {
+    const candidate = Array(row * cell).fill().map((arr, i) => {
+        return i;
+    });
+
+    // 지뢰 개수만큼 랜덤으로 뽑기
+    const shuffle = [];
+
+    while(candidate.length > row * cell - mine) {
+        const chosen = candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0];
+        shuffle.push(chosen);
+    }
+
+    // 테이블 생성
+    const data = [];
+
+    for(let i = 0; i < row; i++) {
+        const rowData = [];
+        data.push(rowData);
+        for(let j = 0; j < cell; j++) {
+            rowData.push(CODE.NORMAL); // CODE.NORMAL => 지뢰가 아닌 테이블
+        }
+    }
+
+    // 테이블에 지뢰 넣기
+    for(let k = 0; k < shuffle.length; k++) {
+        // 행과 열 가져오기
+        const ver = Math.floor(shuffle[k] / cell);
+        const hor = shuffle[k] % cell;
+        data[ver][hor] = CODE.MINE; // 지뢰 넣기
+    }
+
+    return data;
+};
+
 export const START_GAME = 'START_GAME';
 
 // Context API 사용하기 전, Reducer 복습
