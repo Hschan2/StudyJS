@@ -20,12 +20,14 @@ export const TableContext = createContext({
     // 초기값 정의
     tableData: [],
     dispatch: () => {},
+    halted: true,
 });
 
 const initialState = {
     tableData: [],
     timer: 0,
     result: '',
+    halted: true, // 게임 중단
 };
 
 // 지뢰 칸과 지뢰 생성
@@ -65,6 +67,11 @@ const plantMine = (row, cell, mine) => {
 };
 
 export const START_GAME = 'START_GAME';
+export const OPEN_CELL = 'OPEN_CELL';
+export const CLICK_MINE = 'CLICK_MINE';
+export const FLAG_CELL = 'FLAG_CELL';
+export const QUESTION_CELL = 'QUESTION_CELL';
+export const NORMALIZE_CELL = 'NORMALIZE_CELL';
 
 // Context API 사용하기 전, Reducer 복습
 const reducer = (state, action) => {
@@ -73,7 +80,74 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 tableData: plantMine(action.row, action.cell, action.mine),
+                halted: true,
             };
+        case OPEN_CELL: { // 불변성 유지
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...state.tableData[action.row]];
+            tableData[action.row][action.cell] = CODE.OPENED; // 클릭한 셀 열기
+
+            return {
+                ...state,
+                tableData,
+            }
+        }
+        case CLICK_MINE: {
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...state.tableData[action.row]];
+            tableData[action.row][action.cell] = CODE.CLICKED_MINE;
+
+            return {
+                ...state,
+                tableData,
+                halted: true // 게임 잠시 중단
+            }
+        }
+        case FLAG_CELL: {
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...state.tableData[action.row]];
+            
+            if(tableData[action.row][action.cell] === CODE.MINE) {
+                tableData[action.row][action.cell] = CODE.FLAG_MINE;
+            } else {
+                tableData[action.row][action.cell] = CODE.FLAG;
+            }
+            
+            return {
+                ...state,
+                tableData,
+            }
+        }
+        case QUESTION_CELL: {
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...state.tableData[action.row]];
+            
+            if(tableData[action.row][action.cell] === CODE.FLAG_MINE) {
+                tableData[action.row][action.cell] = CODE.QUESTION_MINE;
+            } else {
+                tableData[action.row][action.cell] = CODE.QUESTION;
+            }
+            
+            return {
+                ...state,
+                tableData,
+            }
+        }
+        case NORMALIZE_CELL: {
+            const tableData = [...state.tableData];
+            tableData[action.row] = [...state.tableData[action.row]];
+            
+            if(tableData[action.row][action.cell] === CODE.QUESTION_MINE) {
+                tableData[action.row][action.cell] = CODE.MINE;
+            } else {
+                tableData[action.row][action.cell] = CODE.NORMAL;
+            }
+            
+            return {
+                ...state,
+                tableData,
+            }
+        }
         default:
             return state;
     }
@@ -81,17 +155,20 @@ const reducer = (state, action) => {
 
 const mineSearch = () => {
     const [state, dispatch] = useReducer(reducer, initialState);
+
+    const { tableData, halted, timer, result } = state;
+
     // dispatch는 항상 같은 값이기 때문에
-    const value = useMemo(() => ({tableData: state.tableData, dispatch}), [state.tableData]);
+    const value = useMemo(() => ({ tableData: tableData, dispatch, halted: halted }), [tableData, halted]);
 
     return (
         // Context API의 Provider 사용, 자식 컴포넌트에 전달할 값 정의
         // 그러나 value = {{tableData: state.tableData, dispatch} 이렇게 사용하면 새로운 값이 생길 때마다 Rerendering => useMemo로
         <TableContext.Provider value = {value}>
             <Form /> {/* 행과 열 개수, 지뢰 개수 설정, dispatch 설정 */}
-            <div>{state.timer}</div> {/* 게임 시간 */}
+            <div>{timer}</div> {/* 게임 시간 */}
             <Table /> {/* 지뢰 게임 판 */}
-            <div>{state.result}</div> {/* 결과 */}
+            <div>{result}</div> {/* 결과 */}
         </TableContext.Provider>
     );
 };
