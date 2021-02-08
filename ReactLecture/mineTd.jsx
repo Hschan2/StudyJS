@@ -50,7 +50,7 @@ const getTdText = (code) => {
         case CODE.QUESTION_MINE:
             return '?';
         default: // 기본적으로 빈 값으로
-            return '';
+            return code || ''; // 주변 지뢰 개수 표시, 0이면 빈 공간
     }
 };
 

@@ -80,12 +80,36 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 tableData: plantMine(action.row, action.cell, action.mine),
-                halted: true,
+                halted: false,
             };
         case OPEN_CELL: { // 불변성 유지
             const tableData = [...state.tableData];
             tableData[action.row] = [...state.tableData[action.row]];
-            tableData[action.row][action.cell] = CODE.OPENED; // 클릭한 셀 열기
+            // tableData[action.row][action.cell] = CODE.OPENED; // 클릭한 셀 열기
+
+            // 칸 클릭시, 주변 공간 열림
+            let around = [];
+            if(tableData[action.row - 1]) { // 클릭한 칸 위에 3칸
+                around = around.concat(
+                    tableData[action.row - 1][action.cell - 1],
+                    tableData[action.row - 1][action.cell],
+                    tableData[action.row - 1][action.cell + 1],
+                );
+            }
+            around = around.concat( // 클릭한 칸 양 옆
+                tableData[action.row][action.cell - 1],
+                tableData[action.row][action.cell + 1],
+            );
+            if(tableData[action.row + 1]) { // 클릭한 칸의 아래 3칸
+                around = around.concat(
+                    tableData[action.row + 1][action.cell - 1],
+                    tableData[action.row + 1][action.cell],
+                    tableData[action.row + 1][action.cell + 1],
+                );
+            }
+            // 클릭한 칸 주위의 지뢰 개수
+            const count = around.filter((v) => [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)).length;
+            tableData[action.row][action.cell] = count;
 
             return {
                 ...state,
