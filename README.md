@@ -65,6 +65,13 @@ Library (Function bind...)
   componentDidUpdate
   useEffect로 Update 확인
   useMemo, useCallback 사용하기
+  useReducer
+  reducer, action, dispatch
+  Tic Tac Toc Game
+  Context API
+  createContext, Provider
+  useContext
+  지뢰 게임
 ```
   ___
 ### Drag and Drop API JS
