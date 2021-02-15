@@ -84,37 +84,85 @@ const reducer = (state, action) => {
             };
         case OPEN_CELL: { // 불변성 유지
             const tableData = [...state.tableData];
-            tableData[action.row] = [...state.tableData[action.row]];
+            // tableData[action.row] = [...state.tableData[action.row]];
             // tableData[action.row][action.cell] = CODE.OPENED; // 클릭한 셀 열기
 
-            // 칸 클릭시, 주변 공간 열림
-            let around = [];
-            if(tableData[action.row - 1]) { // 클릭한 칸 위에 3칸
-                around = around.concat(
-                    tableData[action.row - 1][action.cell - 1],
-                    tableData[action.row - 1][action.cell],
-                    tableData[action.row - 1][action.cell + 1],
-                );
-            }
-            around = around.concat( // 클릭한 칸 양 옆
-                tableData[action.row][action.cell - 1],
-                tableData[action.row][action.cell + 1],
-            );
-            if(tableData[action.row + 1]) { // 클릭한 칸의 아래 3칸
-                around = around.concat(
-                    tableData[action.row + 1][action.cell - 1],
-                    tableData[action.row + 1][action.cell],
-                    tableData[action.row + 1][action.cell + 1],
-                );
-            }
-            // 클릭한 칸 주위의 지뢰 개수
-            const count = around.filter((v) => [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)).length;
-            tableData[action.row][action.cell] = count;
+            tableData.forEach((row, i) => {
+                tableData[i] = [...state.tableData[i]]; // 모든 칸을 새로운 객체로
+            });
 
+            const checked = [];
+
+            const checkAround = (row, cell) => { // 현재 칸 기준으로 검사
+                // 닫힌 칸만 열기
+                if([CODE.OPENED, CODE.FLAG_MINE, CODE.FLAG, CODE.QUESTION_MINE, CODE.QUESTION].includes(tableData[row][cell])) {
+                    return;
+                }
+                // 상하좌우 칸이 아닌 경우 필터링, 상하좌우 없는 칸은 안 열기
+                if(row < 0 || row >= tableData.length || cell < 0 || cell >= tableData[0].length) {
+                    return;
+                }
+                // 이미 열려 있는 칸인지 확인
+                if(checked.includes(row + ',' + cell)) {
+                    return;
+                } else {
+                    checked.push(row + ',' + cell);
+                }
+
+                // 칸 클릭시, 주변 공간 열림
+                let around = [];
+                if(tableData[row - 1]) { // 클릭한 칸 위에 3칸
+                    around = around.concat(
+                        tableData[row - 1][cell - 1],
+                        tableData[row - 1][cell],
+                        tableData[row - 1][cell + 1],
+                    );
+                }
+                around = around.concat( // 클릭한 칸 양 옆
+                    tableData[row][cell - 1],
+                    tableData[row][cell + 1],
+                );
+                if(tableData[row + 1]) { // 클릭한 칸의 아래 3칸
+                    around = around.concat(
+                        tableData[row + 1][cell - 1],
+                        tableData[row + 1][cell],
+                        tableData[row + 1][cell + 1],
+                    );
+                }
+                // 클릭한 칸 주위의 지뢰 개수
+                const count = around.filter((v) => [CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)).length;
+
+                if(count === 0) {
+                    if(row > -1) {
+                        const near = [];
+                        if(row - 1 > -1) { // 가장 맨 윗칸 클릭 시
+                            near.push([row - 1, cell - 1]);
+                            near.push([row - 1, cell]);
+                            near.push([row - 1, cell + 1]);
+                        }
+                        near.push([row, cell - 1]);
+                        near.push([row, cell + 1]);
+                        if(row + 1 > tableData.length) { // 가장 맨 아래칸 클릭 시
+                            near.push([row + 1, cell - 1]);
+                            near.push([row + 1, cell]);
+                            near.push([row + 1, cell + 1]);
+                        }
+
+                        near.forEach((n) => { // 주변에 칸이 있는 것들만
+                            if(tableData[n[0]][n[1]] !== CODE.OPENED) {
+                                checkAround(n[0], n[1]);
+                            }
+                        });
+                    }
+                }
+                tableData[row][cell] = count;
+            };
+
+            checkAround(action.row, action.cell);
             return {
                 ...state,
                 tableData,
-            }
+            };
         }
         case CLICK_MINE: {
             const tableData = [...state.tableData];
