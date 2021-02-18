@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useMemo } from 'react';
+import React, { useReducer, createContext, useMemo, useEffect } from 'react';
 import Form from './mineForm';
 import Table from './mineTable';
 
@@ -25,9 +25,15 @@ export const TableContext = createContext({
 
 const initialState = {
     tableData: [],
+    data: {
+        row: 0,
+        cell: 0,
+        mine: 0,
+    },
     timer: 0,
     result: '',
     halted: true, // 게임 중단
+    openedCount: 0,
 };
 
 // 지뢰 칸과 지뢰 생성
@@ -72,6 +78,7 @@ export const CLICK_MINE = 'CLICK_MINE';
 export const FLAG_CELL = 'FLAG_CELL';
 export const QUESTION_CELL = 'QUESTION_CELL';
 export const NORMALIZE_CELL = 'NORMALIZE_CELL';
+export const INCREAMENT_TIMER = 'INCREAMENT_TIMER';
 
 // Context API 사용하기 전, Reducer 복습
 const reducer = (state, action) => {
@@ -79,8 +86,15 @@ const reducer = (state, action) => {
         case START_GAME:
             return {
                 ...state,
+                data: {
+                    row: action.row,
+                    cell: action.cell,
+                    mine: action.mine,
+                },
+                openedCount: 0,
                 tableData: plantMine(action.row, action.cell, action.mine),
                 halted: false,
+                timer: 0,
             };
         case OPEN_CELL: { // 불변성 유지
             const tableData = [...state.tableData];
@@ -92,6 +106,7 @@ const reducer = (state, action) => {
             });
 
             const checked = [];
+            let openCount = 0;
 
             const checkAround = (row, cell) => { // 현재 칸 기준으로 검사
                 // 닫힌 칸만 열기
@@ -103,14 +118,16 @@ const reducer = (state, action) => {
                     return;
                 }
                 // 이미 열려 있는 칸인지 확인
-                if(checked.includes(row + ',' + cell)) {
+                if(checked.includes(row + '/' + cell)) {
                     return;
                 } else {
-                    checked.push(row + ',' + cell);
+                    checked.push(row + '/' + cell);
                 }
 
                 // 칸 클릭시, 주변 공간 열림
-                let around = [];
+                let around = [
+                    tableData[row - 1][cell - 1], tableData[row - 1][cell + 1],
+                ];
                 if(tableData[row - 1]) { // 클릭한 칸 위에 3칸
                     around = around.concat(
                         tableData[row - 1][cell - 1],
@@ -155,13 +172,26 @@ const reducer = (state, action) => {
                         });
                     }
                 }
+                // 닫힌 칸일 때, 카운트 증가
+                if(tableData[row][cell] === CODE.NORMAL) openCount += 1;
                 tableData[row][cell] = count;
             };
 
             checkAround(action.row, action.cell);
+            // 승리했을 때
+            let halted = false;
+            let result = '';
+
+            if(state.data.row * state.data.cell - state.data.mine === state.openedCount + openCount) {
+                halted = true;
+                result = `${state.timer}초만에 Win!`;
+            }
             return {
                 ...state,
                 tableData,
+                openedCount: state.openedCount + openCount,
+                halted,
+                result,
             };
         }
         case CLICK_MINE: {
@@ -220,6 +250,12 @@ const reducer = (state, action) => {
                 tableData,
             }
         }
+        case INCREAMENT_TIMER: {
+            return {
+                ...state,
+                timer: state.timer + 1,
+            }
+        }
         default:
             return state;
     }
@@ -232,6 +268,15 @@ const mineSearch = () => {
 
     // dispatch는 항상 같은 값이기 때문에
     const value = useMemo(() => ({ tableData: tableData, dispatch, halted: halted }), [tableData, halted]);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            dispatch({ type: INCREAMENT_TIMER });
+        }, 1000);
+        return () => {
+            clearInterval(timer);
+        }
+    }, []);
 
     return (
         // Context API의 Provider 사용, 자식 컴포넌트에 전달할 값 정의
