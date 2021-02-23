@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback, useContext, memo } from 'react';
 import { START_GAME, TableContext } from './mineSearch';
 
-const mineForm = () => {
+const mineForm = memo(() => {
     const [row, setRow] = useState(10); // 행 초기화
     const [cell, setCell] = useState(10); // 열 초기화
     const [mine, setMine] = useState(20); // 지뢰 개수 초기화
@@ -33,6 +33,6 @@ const mineForm = () => {
             <button onClick = {onClickBtn}>Start</button>
         </div>
     );
-};
+});
 
 export default mineForm;

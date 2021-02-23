@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext, useCallback, memo, useMemo } from 'react';
 import { TableContext, CODE, OPEN_CELL, CLICK_MINE, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL } from './mineSearch';
 
 // TD 스타일 설정
@@ -54,7 +54,7 @@ const getTdText = (code) => {
     }
 };
 
-const mineTd = ({ rowIndex, cellIndex }) => {
+const mineTd = memo(({ rowIndex, cellIndex }) => {
     const { tableData, dispatch, halted } = useContext(TableContext);
     const onClickTd = useCallback(() => {
         if(halted) {
@@ -111,11 +111,23 @@ const mineTd = ({ rowIndex, cellIndex }) => {
         }
     }, [tableData[rowIndex][cellIndex], halted]);
 
-    return (
+    // 리렌더링 한 번만 이루어짐
+    return useMemo(() => (
         <td style = {getTdStyle(tableData[rowIndex][cellIndex])} onClick = {onClickTd} onContextMenu = {onRightClickTd}>
             {getTdText(tableData[rowIndex][cellIndex])}
         </td>
-    );
-};
+    ), [tableData[rowIndex][cellIndex]]);
+
+    // return <RealId onClickTd = {onClickTd} onRightClickTd = {onRightClickTd} data = {tableData[rowIndex][cellIndex]} />
+});
+
+// 컴포넌트 분리하기
+// const RealId = memo(({ onClickTd, onRightClickTd, data}) => {
+//     return (
+//         <td style = {getTdStyle(data)} onClick = {onClickTd} onContextMenu = {onRightClickTd}>
+//             {getTdText(data)}
+//         </td>
+//     );
+// });
 
 export default mineTd;
