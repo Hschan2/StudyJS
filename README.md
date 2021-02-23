@@ -71,7 +71,7 @@ Library (Function bind...)
   Context API
   createContext, Provider
   useContext
-  지뢰 게임 (승리 조건 설정 및 타이머...)
+  지뢰 게임 (Context API 최적화)
 ```
   ___
 ### Drag and Drop API JS
