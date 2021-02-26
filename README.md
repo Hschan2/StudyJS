@@ -83,6 +83,7 @@ Library (Function bind...)
 
   react-router / react-router-dom
   BrowserRouter
+  Link
 ```
   ___
 ### Drag and Drop API JS
