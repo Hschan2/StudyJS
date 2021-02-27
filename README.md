@@ -84,6 +84,7 @@ Library (Function bind...)
   react-router / react-router-dom
   BrowserRouter
   Link
+  hashRouter, params, withRouter
 ```
   ___
 ### Drag and Drop API JS
