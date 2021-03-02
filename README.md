@@ -86,6 +86,7 @@ Library (Function bind...)
   BrowserRouter
   Link
   hashRouter, params, withRouter
+  Location, Match, History
 ```
   ___
 ### Drag and Drop API JS
