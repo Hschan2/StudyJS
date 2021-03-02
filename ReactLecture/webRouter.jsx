@@ -25,7 +25,7 @@ const webRouter = () => {
                 <Link to = "/game/Ball">숫자야구</Link>
                 <Link to = "/game/Lotto">로또게임</Link>
                 {/* 동적으로 처리하기, index 등 아무 이름으로 설정 가능 */}
-                <Link to = "/game/index">로또게임</Link>
+                <Link to = "/game/index">메인</Link>
             </div>
             <div>
                 {/* path => link, component => 실제로 보여질 것 */}
