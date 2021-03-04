@@ -4,6 +4,7 @@ import GuGuDan from './GuGuDan';
 import Ball from './Ball';
 import Lotto from './Lotto';
 import GameMatcher from './GameMatcher';
+import Baseball from './Baseball';
 
 const webRouter = () => {
     return (
@@ -26,6 +27,8 @@ const webRouter = () => {
                 <Link to = "/game/Lotto">로또게임</Link>
                 {/* 동적으로 처리하기, index 등 아무 이름으로 설정 가능 */}
                 <Link to = "/game/index">메인</Link>
+                {/* Query로 값 넘기기 (QueryString) */}
+                <Link to = "/game/Baseball?query=10&hello=hong&bye=react">메인</Link>
             </div>
             <div>
                 {/* path => link, component => 실제로 보여질 것 */}
@@ -33,13 +36,14 @@ const webRouter = () => {
                 <Route path = "/GuGuDan" component = {GuGuDan}></Route>
                 <Route path = "/Ball" component = {Ball}></Route>
                 <Route path = "/Lotto" component = {Lotto}></Route>
+                <Route path = "/Baseball" component = {Baseball}></Route>
                 {/* 많은 라우터를 사용하는 대신 동적으로 처리하는 방법 (Dynamic Router) */}
                 {/* :name => params, 이는 동적으로 처리 */}
                 {/* 아래처럼 설정할 경우, 아래 하나의 Route만 있고 Link에서 설정 가능 */}
                 <Route path = "/game/:name" component = {GameMatcher}></Route>
             </div>
         </HashRouter>
-        {/* </BrowserRouter> */}
+        // </BrowserRouter>
     );
 }
 

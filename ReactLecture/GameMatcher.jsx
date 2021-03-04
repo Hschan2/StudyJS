@@ -9,6 +9,11 @@ import Lotto from './Lotto';
 class GameMatcher extends Component {
     render() {
         console.log(this.props.match.params.name === 'gugudan');
+        // 전달받은 값을 가져오기 (맨 앞에 ?을 분리하고 URLSearchParams에 넣기)
+        let value = new URLSearchParams(this.props.location.search.slice(1));
+        // hello라는 key값을 가진 것의 값 가져오기
+        console.log(value.get('hello'));
+
         // 분기 처리하기 (Router에서 동적으로 처리할 경우 아래처럼 사용)
         if(this.props.match.params.name === 'gugudan') {
             return <GuGuDan />
@@ -16,6 +21,8 @@ class GameMatcher extends Component {
             return <Baseball />
         } else if(this.props.match.params.name === 'lotto') {
             return <Lotto />
+        } else if(this.props.match.params.name === 'Baseball') {
+            return <Baseball />
         }
         return (
             <div>
@@ -26,5 +33,5 @@ class GameMatcher extends Component {
 }
 
 // withRouter 사용
-// export default withRouter(GameMatcher);
-export default GameMatcher;
+export default withRouter(GameMatcher);
+// export default GameMatcher;
