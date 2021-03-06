@@ -26,7 +26,7 @@ class GameMatcher extends Component {
         }
         return (
             <div>
-                해당 페이지가 없습니다.
+                일치하는 페이지가 없습니다.
             </div>
         );
     }
