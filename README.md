@@ -88,6 +88,7 @@ Library (Function bind...)
   hashRouter, params, withRouter
   Location, Match, History
   QueryString, URLSearchParams
+  Switch, Exact
 ```
   ___
 ### Drag and Drop API JS
