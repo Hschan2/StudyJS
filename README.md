@@ -13,6 +13,7 @@ Watch(tsc -w 사용)으로 자동 새로고침
 include, exclude files (모듈 이용하기)
 Library (Function bind...)
 정규표현식 (Regular Expression)
+함수형 프로그래밍 (Function Programming)
 ```
   ___
 
