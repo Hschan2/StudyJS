@@ -1,6 +1,6 @@
 # 자바스크립트에 대한 모든 것
 
-## 타입스크립트
+## 타입스크립트 [Link](https://github.com/Hschan2/StudyJS/tree/master/tspart)
 * Variable (number, string..., boolean, object), Type
 * Object 다양한 사용법, Array, enum, Tuple, any, Union Type
 * Function, Return Type, Void, The Unknown Type
@@ -9,7 +9,7 @@
 * 정규표현식 (Regular Expression)
 * 함수형 프로그래밍 (Function Programming)
 
-## 자바스크립트
+## 자바스크립트 [Link](https://github.com/Hschan2/StudyJS/tree/master/About_Javascript)
 * Process&Thread (자바스크립트의 스레드)
 * RecursiveFunction (재귀 함수)
 * eventDelegation (이벤트 위임)
@@ -17,7 +17,7 @@
 * JSON (stringify, parse)
 * Class (Class, CallBack Function)
 
-## 리액트
+## 리액트 [Link](https://github.com/Hschan2/StudyJS/tree/master/ReactLecture)
 * React 기본
 * Webpack, Babel
 * React Hook으로 구구단 게임
@@ -53,7 +53,7 @@
 * QueryString, URLSearchParams
 * Switch, Exact
 
-## Drag and Drop API JS
+## Drag and Drop API JS [Link](https://github.com/Hschan2/StudyJS/tree/master/DragAndDropAPI_JS)
 * Drag And Drop API를 사용해서 드래그 앤 드랍이 가능한 메뉴
 
 ## 리액트로 웹 만들기
