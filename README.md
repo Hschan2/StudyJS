@@ -65,5 +65,6 @@
 * TextToVoice2 (음성 선택X. 브라우저마다 음성을 다르게 출력) [Link](https://github.com/Hschan2/StudyJS/tree/master/TextToVoice2)
 
 ## Vanilla JS로 Chrome App 만들기 [Link]()
-* Clock
-
+* Clock (초기 단계)
+* Quote (초기 단계)
+* Background (Image) (초기 단계)
