@@ -64,8 +64,8 @@
 * TextToVoice (음성 선택, 입력받은 값 음성으로 출력) [Link](https://github.com/Hschan2/StudyJS/tree/master/TextToVoice)
 * TextToVoice2 (음성 선택X. 브라우저마다 음성을 다르게 출력) [Link](https://github.com/Hschan2/StudyJS/tree/master/TextToVoice2)
 
-## Vanilla JS로 Chrome App 만들기 [Link]()
-* Greeting (초기 단계)
-* Clock (초기 단계)
-* Quote (초기 단계)
-* Background (Image) (초기 단계)
+## Vanilla JS로 Chrome App 만들기 [Link](https://github.com/Hschan2/StudyJS/tree/master/VanillaJS)
+* Greeting
+* Clock
+* Quote
+* Background (이미지)
