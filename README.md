@@ -69,4 +69,4 @@
 * Clock
 * Quote
 * Background (이미지)
-* ToDo (Writing ~ Loading)
+* ToDo (Write ~ Delete)
