@@ -2,10 +2,12 @@ const toDoForm = document.getElementById("todo-form");
 const toDoInput = document.querySelector("#todo-form input"); // const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.getElementById("todo-list");
 
-const toDos = []; // for saving
+const TODOS_KEY = "todos";
+
+let toDos = []; // for saving
 
 function saveToDos() {
-    localStorage.setItem("todos", JSON.stringify(toDos)); // String으로 저장
+    localStorage.setItem(TODOS_KEY, JSON.stringify(toDos)); // String으로 저장
 }
 
 function DeleteToDo(event) {
@@ -41,5 +43,10 @@ function handleToDoSubmit(event) {
 
 toDoForm.addEventListener("submit", handleToDoSubmit);
 
+const savedToDos = localStorage.getItem(TODOS_KEY);
 
-
+if(savedToDos !== null) {
+    const parsedToDos = JSON.parse(savedToDos);
+    toDos = parsedToDos; // 이전에 저장한 값 유지
+    parsedToDos.forEach(paintToDo); // localStorage에 있는 데이터만큼 반복해서 그리기
+}
