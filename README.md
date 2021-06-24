@@ -70,3 +70,4 @@
 * Quote
 * Background (이미지)
 * ToDo (Write ~ Delete)
+* Weather (OpenWeatherMap API)
