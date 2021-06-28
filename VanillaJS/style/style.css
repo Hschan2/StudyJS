@@ -27,6 +27,7 @@ body {
     margin-top: 10px;
     margin-right: 10px;
     z-index: 2;
+    user-select: none;
 }
 
 #login-form {
@@ -70,6 +71,7 @@ body {
     text-align: center;
     color: aliceblue;
     margin-top: 300px;
+    user-select: none;
 }
 
 #todo-form {
@@ -77,11 +79,11 @@ body {
     z-index: 2;
     width: 100%;
     text-align: center;
-    margin-top: 450px;
+    margin-top: 420px;
 }
 
 #todo-form input {
-    width: 220px;
+    width: 300px;
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
@@ -97,6 +99,10 @@ body {
     border: none;
 }
 
+#todo-form input::placeholder {
+    text-align: center;
+}
+
 #todo-list {
     position: absolute;
     z-index: 2;
@@ -104,7 +110,7 @@ body {
     text-align: center;
     list-style: none;
     padding-left: 0px;
-    margin-top: 500px;
+    margin-top: 480px;
     color: aliceblue;
     font-weight: bold;
 }
@@ -113,10 +119,11 @@ body {
     margin-left: 5px;
     border: none;
     padding: 5px 5px;
-    color: black;
+    color: crimson;
     font-weight: bold;
     background-color: transparent;
     cursor: pointer;
+    user-select: none;
 }
 
 #quote {
@@ -126,4 +133,7 @@ body {
     text-align: center;
     color: aliceblue;
     margin-top: 380px;
+    font-size: 12px;
+    font-weight: bolder;
+    user-select: none;
 }
