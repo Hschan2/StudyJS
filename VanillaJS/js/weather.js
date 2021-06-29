@@ -18,8 +18,8 @@ function onGeoOk(position) {
         // else if(data.weather[0].main === "Drizzle") data.weather[0].main = "이슬비";
         // else if(data.weather[0].main === "Thunderstorm") data.weather[0].main = "번개";
 
+        weather.innerText = `${data.weather[0].main} ${Math.round(data.main.temp)}˚ | `;
         city.innerText = data.name;
-        weather.innerText = `${data.weather[0].main} ${Math.round(data.main.temp)}˚ / `;
     }); // URL fetch -> response -> data 추출
 }
 
