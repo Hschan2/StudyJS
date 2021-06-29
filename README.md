@@ -68,7 +68,7 @@
 * Greeting
 * Clock
 * Quote
-* Background (이미지)
+* Background (Image files)
 * ToDo (Write ~ Delete) (LocalStorage)
 * Weather (OpenWeatherMap API)
-* Style 적용
+* Apply Style
