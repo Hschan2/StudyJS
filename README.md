@@ -68,7 +68,7 @@
 * Greeting
 * Clock
 * Quote
-* Background (Image files)
+* Background (Image files -> Video Files)
 * ToDo (Write ~ Delete) (LocalStorage)
 * Weather (OpenWeatherMap API)
 * Apply Style
