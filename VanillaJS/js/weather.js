@@ -7,6 +7,8 @@ function onGeoOk(position) {
 
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APP_KEY}&units=metric&lang=${lang}`;
 
+    console.log(url);
+
     fetch(url).then(response => response.json()).then(data => {
         const weather = document.querySelector("#weather span:first-child");
         const city = document.querySelector("#weather span:last-child");
@@ -18,7 +20,7 @@ function onGeoOk(position) {
         // else if(data.weather[0].main === "Drizzle") data.weather[0].main = "이슬비";
         // else if(data.weather[0].main === "Thunderstorm") data.weather[0].main = "번개";
 
-        weather.innerText = `${data.weather[0].main} ${Math.round(data.main.temp)}˚ | `;
+        weather.innerText = `${data.weather[0].description} ${Math.round(data.main.temp)}˚ | `;
         city.innerText = data.name;
     }); // URL fetch -> response -> data 추출
 }
