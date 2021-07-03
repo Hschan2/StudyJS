@@ -69,6 +69,6 @@
 * Clock
 * Quote
 * Background (Image files -> Video Files)
-* ToDo (Write ~ Delete) (LocalStorage)
+* ToDo (Write ~ Delete) (LocalStorage: Saving, Loading)
 * Weather (OpenWeatherMap API)
 * Apply Style
